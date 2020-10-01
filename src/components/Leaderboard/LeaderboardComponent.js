@@ -23,14 +23,12 @@ class Leaderboard extends Component {
     return (
       <Container fluid="md">   
       <Row className="p-3">  
-      <Table striped bordered hover>
+      <Table striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>Rank</th>
-            <th>Profile And Name </th>
-            <th>Number Of Questions Asked</th>
-            <th>Number Of Questions Answered</th>
-            <th> Total</th>
+            <th>Name </th>
+            <th>Total</th>
           </tr>
         </thead>
         <tbody>
@@ -38,8 +36,6 @@ class Leaderboard extends Component {
       <tr key={user.id}>
         <td>{index + 1}</td>
         <td><img src={user.avatarURL}  width="40" height="40"  alt='Profile Pic'/>  {user.name}<span style={{fontWeight:"bold" ,  color:"green"}}> {index == 0 ? '1st place': ''}</span>  </td>
-        <td>{user.question}</td>
-        <td>{user.answer}</td>
         <td>{user.answer+user.question}</td>
       </tr>
     )):<tr></tr>}

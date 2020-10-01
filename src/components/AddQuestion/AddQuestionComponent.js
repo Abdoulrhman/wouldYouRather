@@ -37,11 +37,13 @@ const AddQuestion = (props) => {
       <Row className="justify-content-md-center">
         <Col xs="12" md="auto">
           <Col xs="12" className="p-3">
-            <b>Would You Rather:</b>
+            <b>Would You Rather ?</b>
           </Col>
           <Form onSubmit={createNewQuestion}>
             <FormGroup>
+              <label htmlFor="o1">Option One</label>
               <Form.Control
+              id="o1"
                 type="text"
                 size="lg"
                 name="optionOne"
@@ -51,7 +53,9 @@ const AddQuestion = (props) => {
               />
             </FormGroup>
             <FormGroup>
+              <label htmlFor="o2">Option Two</label>
               <Form.Control
+              id="o2"
                 type="text"
                 size="lg"
                 name="optionTwo"

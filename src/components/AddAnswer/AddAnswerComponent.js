@@ -48,17 +48,17 @@ const AddAnswer = () => {
     <Container>
       <Row className="justify-content-md-center">
         <Col md="auto">
-          <Card style={{ width: "18rem" }}>
+          <Card style={{ width: "20rem" }}>
             <Card.Img
               variant="top"
-              width="285"
-              height="285"
+              width="400"
+              height="300"
               className="img-rounded text-center "
               src={users[question.author].avatarURL}
             />
             <Card.Body>
               <Card.Title className="text-center">
-                <b>{users[question.author].name}</b> asks would you rather:
+                <b>{users[question.author].name}</b> Asks you , would you rather :
               </Card.Title>
               <Form onSubmit={(e) => handleSubmit(e, id)}>
                 <ListGroup className="pb-3">

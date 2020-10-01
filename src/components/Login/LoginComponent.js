@@ -27,20 +27,20 @@ class Login extends Component {
         <Jumbotron>
           <h1>Welcome to would you rather App !</h1>
           <p>
-            <Row className="p-3">
-              <Col xs={6}>
+            <Row>
+              <Col xs={5}>
                 <Form id="Login" onSubmit={this.handleSubmit}>
                   <Form.Group>
                     <Form.Label>Select Your Character </Form.Label>
                     <Form.Control
                       as="select"
                       name="select"
-                      placeholder="select user to login"
+                      placeholder="Pokemon List"
                       value={user || "none"}
                       onChange={(e) => this.handleChange(e)}
                     >
                       <option disabled value="none">
-                        select user to login
+                      Pokemon List
                       </option>
                       {Object.keys(users).map((singleUser) => (
                         <option
@@ -69,13 +69,15 @@ class Login extends Component {
     );
   }
 }
-const mapDispatchToProps = (dispatch) => ({
-  setLoginUser: (Id) => dispatch(handleLoginUser(Id)),
-});
 const mapStateToProps = (state) => {
   return {
     users: state.users,
     authedUser: state.authedUser.userId,
   };
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  setLoginUser: (Id) => dispatch(handleLoginUser(Id)),
+});
+
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

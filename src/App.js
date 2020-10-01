@@ -15,7 +15,7 @@ import AddAnswerComponent from "./components/AddAnswer/AddAnswerComponent";
 import ViewResultComponent from "./components/ViewResult/ViewResultComponent";
 
 //Utils
-import AuthRoute from "./utils/AuthRoute";
+import AuthRoute from "./HOC/AuthRoute";
 
 import LoadingBar from "react-redux-loading";
 
@@ -35,9 +35,9 @@ const App = (props) => {
         <Switch>
           <Route exact path="/" component={LoginComponent} />
           <AuthRoute exact path="/dashboard" component={DashboardComponent} />
+          <AuthRoute exact path="/answer/:question_id" component={AddAnswerComponent} />
           <AuthRoute exact path="/leaderboard" component={LeaderboardComponent} />
           <AuthRoute exact path="/create" component={AddQuestionComponent} />
-          <AuthRoute exact path="/answer/:question_id" component={AddAnswerComponent} />
           <AuthRoute
             exact
             path="/results/:question_id"

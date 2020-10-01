@@ -24,13 +24,13 @@ const NavBar = () => {
             <Fragment>
               <Nav className="mr-auto">
                 <NavItem className="pr-3">
-                  <NavLink to="/dashboard">Dashboard</NavLink>
+                  <NavLink to="/dashboard" style={{textDecoration:"none", color:"gray"}}>Dashboard</NavLink>
                 </NavItem>
-                <NavItem className="pr-3">
-                  <NavLink to="/create">Add Question</NavLink>
+                <NavItem className="pr-3" >
+                  <NavLink to="/create" style={{textDecoration:"none", color:"gray"}}>Add Question</NavLink>
                 </NavItem>
-                <NavItem className="pr-3">
-                  <NavLink to="/leaderBoard">LeaderBoard</NavLink>
+                <NavItem className="pr-3" >
+                  <NavLink to="/leaderBoard" style={{textDecoration:"none", color:"gray"}}>LeaderBoard</NavLink>
                 </NavItem>
               </Nav>
 
