@@ -34,10 +34,10 @@ class Leaderboard extends Component {
           </tr>
         </thead>
         <tbody>
-      { orderUsers!==undefined?orderUsers.map((user, index) => (
+      { orderUsers!==undefined?orderUsers.slice(0,3).map((user, index) => (
       <tr key={user.id}>
         <td>{index + 1}</td>
-        <td><img src={user.avatarURL}  width="40" height="40"  alt='Profile Pic'/>  {user.name} </td>
+        <td><img src={user.avatarURL}  width="40" height="40"  alt='Profile Pic'/>  {user.name}<span style={{fontWeight:"bold" ,  color:"green"}}> {index == 0 ? '1st place': ''}</span>  </td>
         <td>{user.question}</td>
         <td>{user.answer}</td>
         <td>{user.answer+user.question}</td>

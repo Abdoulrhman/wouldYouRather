@@ -12,9 +12,9 @@ import { useParams } from "react-router";
 
 const ViewResult = () => {
   const params = useParams();
-
   const questions = useSelector((state) => state.questions);
-  const question = questions[params.question_id];
+  const question_id = params.question_id;
+  const question = questions[question_id];
   const authedUser = useSelector((state) => state.authedUser);
   const users = useSelector((state) => state.users);
 
@@ -34,9 +34,9 @@ const ViewResult = () => {
       <Row className="justify-content-md-center">
         <Col md="auto">
           <Col xs="12" className="text-center">
-            <b>Asked by {users[questions[question.id].author].name}</b>
+            <p>Asked by {users[questions[question.id].author].name}</p>
             <br />
-            <b>{users[authedUser.userId].name}</b> chose
+            <p>{users[authedUser.userId].name}</p> choose {''}
             {
               questions[question.id][
                 users[authedUser.userId].answers[question.id]

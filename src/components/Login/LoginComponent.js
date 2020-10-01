@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Form, Button, Col, Row, Container } from "react-bootstrap";
+import { Form, Button, Col, Row, Container, Jumbotron } from "react-bootstrap";
 import { connect } from "react-redux";
 import { handleLoginUser } from "../../actions/authedUser.js";
 import { Redirect } from "react-router-dom";
@@ -24,44 +24,47 @@ class Login extends Component {
       <Redirect to="/dashboard" />
     ) : (
       <Fragment>
-        <Container fluid="md">
-          <Row className="p-3">
-            <Col xs={6}>
-              <Form id="Login" onSubmit={this.handleSubmit}>
-                <Form.Group>
-                  <Form.Label>Login</Form.Label>
-                  <Form.Control
-                    as="select"
-                    name="select"
-                    placeholder="select user to login"
-                    value={user || "none"}
-                    onChange={(e) => this.handleChange(e)}
-                  >
-                    <option disabled value="none">
-                      select user to login
-                    </option>
-                    {Object.keys(users).map((singleUser) => (
-                      <option
-                        key={users[singleUser].id}
-                        value={users[singleUser].id}
-                      >
-                        {users[singleUser].name}
+        <Jumbotron>
+          <h1>Welcome to would you rather App !</h1>
+          <p>
+            <Row className="p-3">
+              <Col xs={6}>
+                <Form id="Login" onSubmit={this.handleSubmit}>
+                  <Form.Group>
+                    <Form.Label>Select Your Character </Form.Label>
+                    <Form.Control
+                      as="select"
+                      name="select"
+                      placeholder="select user to login"
+                      value={user || "none"}
+                      onChange={(e) => this.handleChange(e)}
+                    >
+                      <option disabled value="none">
+                        select user to login
                       </option>
-                    ))}
-                  </Form.Control>
-                </Form.Group>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  value="Submit"
-                  disabled={user === undefined}
-                >
-                  Sign in
-                </Button>
-              </Form>
-            </Col>
-          </Row>
-        </Container>{" "}
+                      {Object.keys(users).map((singleUser) => (
+                        <option
+                          key={users[singleUser].id}
+                          value={users[singleUser].id}
+                        >
+                          {users[singleUser].name}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    value="Submit"
+                    disabled={user === undefined}
+                  >
+                    Sign in
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </p>
+        </Jumbotron>
       </Fragment>
     );
   }

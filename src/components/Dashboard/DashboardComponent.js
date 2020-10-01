@@ -1,60 +1,55 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import SingleQuestion from './SingleQuestionComponent';
-import { TabContent, TabPane, Nav, Row, Container } from 'react-bootstrap'
-class Dashboard extends Component {
-  state = {
-    tabsActive: true
-  };
+import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
+import Question from "./Question/QuestionComponent";
+import { Nav, Row, Container, Tab, Col } from "react-bootstrap";
+const Dashboard = () => {
+  const users = useSelector((state) => state.users);
+  const authedUser = useSelector((state) => state.authedUser);
+  const questions = useSelector((state) => state.questions);
 
-  render() {
-    const { tabsActive } = this.state;
-    const { answerQuestion, unanswerQuestion } = this.props
-    return (
-      <Container fluid="md">
-        <Row className="p-3">
-          <Nav variant="tabs" >
-            <Nav.Item>
-              <Nav.Link onClick={(e) => this.setState(() => ({
-                tabsActive: true
-              }))}>
-                Unanswered Questions</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link onClick={(e) => this.setState(() => ({
-                tabsActive: false
-              }))}>
-                Answered Questions</Nav.Link>
-            </Nav.Item>
+  const answerQuestion = Object.keys(users[authedUser.userId].answers).sort(
+    (a, b) => questions[b].timestamp - questions[a].timestamp
+  );
+  const unanswerQuestion = Object.keys(questions)
+    .filter((id) => !answerQuestion.includes(id))
+    .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
-          </Nav>
+  return (
+    <Container fluid="md">
+      <Tab.Container id="left-tabs-example" defaultActiveKey="Answered">
+        <Row>
+          <Col sm={3}>
+            <Nav variant="pills" className="flex-column" bg="light">
+              <Nav.Item>
+                <Nav.Link eventKey="Answered">Answered</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="Unanswered">Unanswered</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Col>
+          <Col sm={9}>
+            <Tab.Content>
+              <Tab.Pane eventKey="Answered">
+                {answerQuestion.map((id) => (
+                  <Fragment key={id}>
+                    <Question id={id} isAnswer={false} />
+                  </Fragment>
+                ))}
+              </Tab.Pane>
+              <Tab.Pane eventKey="Unanswered">
+                {unanswerQuestion.map((id) => (
+                  <Fragment key={id}>
+                    <Question id={id} isAnswer={true} />
+                  </Fragment>
+                ))}
+              </Tab.Pane>
+            </Tab.Content>
+          </Col>
         </Row>
-        <TabContent >
-          <TabPane active={tabsActive} >
-              {unanswerQuestion.map((id) =>
-                <Fragment key={id}>
-                  <SingleQuestion id={id} questionState='unanswered' /></Fragment>
-              )}
-          </TabPane>
-          <TabPane active={tabsActive === false}>
-              {answerQuestion.map((id) =>
-                <Fragment key={id}>
-                  <SingleQuestion id={id} questionState='answered' /></Fragment>
-              )}
-          </TabPane>
-        </TabContent>
-      </Container>
-    )
-  }
-}
+      </Tab.Container>
+    </Container>
+  );
+};
 
-const mapStateToProps=({ authedUser, users, questions }) =>{
-  const answerQuestion = Object.keys(users[authedUser.userId].answers)
-    .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
-  const unanswerQuestion = Object.keys(questions).filter(id => !answerQuestion.includes(id))
-    .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
-  return {
-    answerQuestion, unanswerQuestion
-  }
-}
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;
