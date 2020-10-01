@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a716b2bd-1082-43d9-bd17-cd3684d2d7ad/deploy-status)](https://app.netlify.com/sites/would-you-rathere-152a5/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a716b2bd-1082-43d9-bd17-cd3684d2d7ad/deploy-status)](https://upbeat-jang-d3b31a.netlify.app/)
 
 # Would You Rather:  React & Redux App
 
